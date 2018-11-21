@@ -1,6 +1,9 @@
 {
     "compilerOptions": {
+            "jsx": "react",
             "noImplicitAny": true,
-            "target": "es5"
+            "sourceMap": true,
+            "target": "es6",
+            "moduleResolution": "node"
     }
 }
