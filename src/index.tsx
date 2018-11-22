@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { render } from 'react-dom';
-import App from '../components/App';
+import * as ReactDOM from 'react-dom';
 
-render(
-    <App message="World, Emma User" />,
-    document.getElementById('root'),
+ReactDOM.render(
+  <div>Hello World!</div>,
+  document.getElementById('root'),
 );
