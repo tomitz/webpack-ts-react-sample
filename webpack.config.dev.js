@@ -18,9 +18,12 @@ module.exports = {
             template: "./public/index.html"  // 同階層のindex.htmlを、ビルド時にdist以下にもデプロイしてくれる
         })
     ],
-    serve: {
-        content: path.resolve(__dirname, 'dist'),
-        port: 8080
+    devServer:  {
+        contentBase: path.resolve(__dirname, 'dist'),   // content-baseの指定
+        watchContentBase: true, // ソースの変更を監視
+        open: true, // デフォルトブラウザを自動起動
+        openPage: "index.html", // 自動で開くページ
+        port: 3000
     },
     module: {
         rules: [
