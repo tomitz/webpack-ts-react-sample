@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');   // index.htmlをビ�
 
 module.exports = {
     mode: 'development',  // 開発環境
-    entry: './src',   // エントリポイント
+    entry: './src/index.tsx',   // エントリポイント
     devtool: 'inline-source-map',
     output: {
         filename: 'static/js/bundle.js',    // bundle.jsの出力場所
@@ -33,7 +33,9 @@ module.exports = {
                 enforce: 'pre', // ビルド前にLinterを走らせる
                 loader: 'tslint-loader',    // tslint-loaderを使う
                 options: {
+                    typeCheck: true,
                     emitErrors: true,    // tslintが出した警告をエラー扱いにする
+                    tsConfigFile: 'tsconfig.dev.json'
                 }
             },
             {
@@ -49,17 +51,18 @@ module.exports = {
                 include: path.resolve(__dirname, 'src/css'),
                 exclude: '/node_modules/',
                 use: [{
-                    loader: 'style-loader'
+                    loader: 'style-loader',
+                    options: {
+                        sourceMap: true
+                    }
                 },{
                     loader: 'css-loader',
                     options: {
                         localIdentName: '[sha512:hash:base32]-[name]-[local]',
-                        modules: true
+                        modules: true,
+                        sourceMap: true
                     }
-                }],
-                options: {
-                    sourceMap: true
-                }
+                }]
             }
         ]
     }

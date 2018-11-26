@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');   // index.htmlをビ�
 
 module.exports = {
     mode: 'production',  // 本番環境
-    entry: './src',   // エントリポイント
+    entry: './src/index.tsx',   // エントリポイント
     output: {
         filename: 'static/js/bundle.js',    // bundle.jsの出力場所
         path: path.resolve(__dirname, 'dist'),  // 出力ディレクトリの絶対パス
@@ -25,7 +25,9 @@ module.exports = {
                 enforce: 'pre', // ビルド前にLinterを走らせる
                 loader: 'tslint-loader',    // tslint-loaderを使う
                 options: {
+                    typeCheck: true,
                     emitErrors: true,    // tslintが出した警告をエラー扱いにする
+                    tsConfigFile: 'tsconfig.prod.json'
                 }
             },
             {
