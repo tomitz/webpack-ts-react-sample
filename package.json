@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "webpack-dev-server --config webpack.config.dev.js",
+    "start":  "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.dev.js",
     "build:prod": "webpack --config webpack.config.prod.js"
   },
   "author": "tomitz",
