@@ -2,8 +2,8 @@ const path = require('path');   // 絶対パスへの変換
 const htmlWebpackPlugin = require('html-webpack-plugin');   // index.htmlをビルド時にdis以下に配置するため
 
 module.exports = {
-    mode: 'production',  // 本番用
-    entry: './src/index.tsx',   // エントリポイント
+    mode: 'production',  // 本番環境
+    entry: './src',   // エントリポイント
     output: {
         filename: 'static/js/bundle.js',    // bundle.jsの出力場所
         path: path.resolve(__dirname, 'dist'),  // 出力ディレクトリの絶対パス
@@ -13,32 +13,42 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
+            filename: "index.html",
             template: "./public/index.html"  // 同階層のindex.htmlを、ビルド時にdist以下にもデプロイしてくれる
         })
     ],
     module: {
         rules: [
             {
-                enforce: 'pre', // ビルド前にLinterを走らせる
-                loader: 'tslint-loader',    // tslint-loaderを使う
                 test: /\.tsx?$/,    // tslint-loaderに渡すファイルの正規表現
                 exclude: '/node_modules/',  // tslint-loaderに渡さないファイル
+                enforce: 'pre', // ビルド前にLinterを走らせる
+                loader: 'tslint-loader',    // tslint-loaderを使う
                 options: {
-                    emitErrors: true    // tslintが出した警告をエラー扱いにする
+                    emitErrors: true,    // tslintが出した警告をエラー扱いにする
                 }
             },
             {
-                loader: 'ts-loader',    // トランスパイラ
                 test: /\.tsx?$/,
                 exclude: '/node_modules/',
+                loader: 'ts-loader',    // トランスパイラ
                 options: {
-                    configFile: 'tsconfig.prod.json'    // production環境用のコンパイル設定ファイル
+                    configFile: 'tsconfig.prod.json'    // 開発環境用のコンパイル設定ファイル
                 }
             },
-            {
-                loaders: ['style-loader', 'css-loader?modules'],    // CSS Modulesを使う設定 ?modulesがオプション
+            {   // CSS Modulesを使う設定
                 test: /\.css$/,
-                exclude: '/node_modules/'
+                include: path.resolve(__dirname, 'src/css'),
+                exclude: '/node_modules/',
+                use: [{
+                    loader: 'style-loader'
+                },{
+                    loader: 'css-loader',
+                    options: {
+                        localIdentName: '[sha512:hash:base32]-[name]-[local]',
+                        modules: true
+                    }
+                }]
             }
         ]
     }
