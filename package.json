@@ -2,9 +2,9 @@
     "name": "webpack-ts-react-sample",
     "version": "1.0.0",
     "description": "",
-    "main": "index.ts",
+    "main": "",
     "scripts": {
-        "tcm": "tcm -p ./src/**/*.scss -c -o ./typings",
+        "tcm": "tcm -p ./src/**/*.scss -c",
         "prestart": "npm run tcm",
         "start": "webpack-dev-server && NODE_ENV=development",
         "prebuild": "npm run tcm",

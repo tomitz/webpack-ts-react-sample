@@ -24,7 +24,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist') // 出力ディレクトリの絶対パス
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', 'tsx', 'css', 'scss', 'json'] // importの時に拡張子を略せる
+        extensions: ['.js', '.jsx', '.ts', '.tsx'] // importの時に拡張子を略せる
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -36,29 +36,16 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader', // トランスパイラ
-                options: {
-                    transpileOnly: true
-                }
+                loader: 'ts-loader' // トランスパイラ
             },
             {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            localIdentName: '[name]-[local]-[hash:base64:5]',
-                            sourceMap: true
-                        }
+                        loader: 'style-loader'
                     },
                     {
-                        loader: 'typed-css-modules-loader',
-                        options: {
-                            camelCase: true,
-                            searchDir: './src',
-                            outDir: './typings'
-                        }
+                        loader: 'css-loader'
                     },
                     {
                         loader: 'sass-loader'

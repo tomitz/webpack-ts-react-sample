@@ -3,6 +3,3 @@
 .DS_Store
 /node_modules/
 /dist/
-package-lock.json
-typings/**/*.scss.d.ts
-typings/**/*.css.d.ts
