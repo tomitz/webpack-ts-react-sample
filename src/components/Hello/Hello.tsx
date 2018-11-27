@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as style from './Hello'
+import * as style from './Hello.scss'
 
 export type HelloProps = {
     compiler: string
