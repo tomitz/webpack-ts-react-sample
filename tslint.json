@@ -1,10 +1,12 @@
 {
     "extends": [
         "tslint-config-airbnb",
-        "tslint-react"
+        "tslint-react",
+        "tslint-config-prettier"
     ],
     "rules": {
         "interface-name": false,
-        "ter-indent": [true, 4]
+        "no-unused-expression": [true, "allow-fast-null-checks"],
+        "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"]
     }
 }
