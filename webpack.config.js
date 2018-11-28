@@ -36,23 +36,27 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader' // トランスパイラ
+                loader: 'ts-loader'
             },
             {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                        options: { sourceMap: true }
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                        options: { sourceMap: true }
                     },
                     {
-                        loader: 'sass-loader'
+                        loader: 'sass-loader',
+                        options: { sourceMap: true }
                     }
                 ]
             },
             {
+                // normalize.css
                 test: /\.css$/,
                 use: [
                     {
